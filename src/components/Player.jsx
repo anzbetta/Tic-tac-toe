@@ -11,6 +11,7 @@ export default function Player({ initialName, symbol }) {
         setName(event.target.value);
         localStorage.setItem('name', event.target.value);
     }
+    
     return(
         <li>
             <span className="player">
