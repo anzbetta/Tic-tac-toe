@@ -63,13 +63,14 @@ h1 {
   margin: 1rem 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 2rem;
 }
 
 #players li {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 50%;
   border: 2px solid transparent;
 }
@@ -85,22 +86,20 @@ h1 {
 }
 
 #players button {
-  width: 3rem;
   border: none;
   background: none;
   color: #c3ba78;
   font-size: 0.9rem;
   cursor: pointer;
   transition: color 0.2s;
-  padding: 0.5rem 0.25rem 0.25rem 0.25rem;
+  padding: 0.5rem 1rem;
   text-align: center;
-}
-
-#players button:hover {
-  color: #f8ca31;
+  flex-shrink: 0;
 }
 
 .player {
+  display: flex;
+  align-items: center;
   border: 2px solid transparent;
   padding: 0.5rem;
   border-radius: 4px;
@@ -116,8 +115,9 @@ h1 {
   margin: 0;
   padding: 0.5rem;
   border-radius: 4px;
-  text-overflow: ellipsis;
   text-align: center;
+  word-wrap: break-word;
+  flex-shrink: 0;
 }
 
 .player input {
@@ -136,6 +136,7 @@ h1 {
   margin-left: 1rem;
   font-size: 1rem;
   color: #e1dec7;
+  flex-shrink: 0;
 }
 
 ol {
@@ -232,12 +233,7 @@ ol {
   box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
 }
 
-#game-over button:hover {
-  background: #fcd256;
-  color: #3f3b00;
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
-}
+
 
 #log {
   max-width: 20rem;
@@ -258,6 +254,40 @@ ol {
   background-color: #3f3b00;
   color: white;
 }
+
+.reset-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+#reset-names,
+#reset-game {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: none;
+  border: 2px solid #c3ba78;
+  color: #c3ba78;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+#reset-names:focus,
+#reset-game:focus {
+  outline: none;
+}
+
+#reset-names:focus-visible,
+#reset-game:focus-visible {
+  outline: 2px solid #fcd256;
+  outline-offset: 2px;
+}
+
+
 
 #game-hints {
   text-align: center;
@@ -335,7 +365,7 @@ ol {
   }
 }
 
-/* Fancy animation for showing the "Game Over" element */
+
 @keyframes pop-in {
   0% {
     transform: scale(0);
@@ -348,4 +378,183 @@ ol {
   100% {
     transform: scale(1);
   }
+}
+
+
+@media (max-width: 768px) {
+  body {
+    min-height: auto;
+  }
+
+  header img {
+    width: 6rem;
+    margin: 2rem auto 0.5rem auto;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 0 auto 2rem auto;
+  }
+
+  #game-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  #players {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #players li {
+    width: auto;
+    justify-content: center;
+  }
+
+  #game-board {
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  #game-board ol {
+    gap: 1rem;
+  }
+
+  #game-board button {
+    width: 6rem;
+    height: 6rem;
+    font-size: 3.5rem;
+  }
+
+  #game-over h2 {
+    font-size: 2.5rem;
+  }
+
+  #game-over p {
+    font-size: 1.5rem;
+  }
+
+  #pre-game button {
+    font-size: 3rem;
+  }
+
+  #log {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header img {
+    width: 5rem;
+    margin: 1.5rem auto 0.5rem auto;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  #game-container {
+    margin: 1rem 0.5rem;
+    padding: 1rem;
+  }
+
+  #game-board {
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  #game-board ol {
+    gap: 0.5rem;
+  }
+
+  #game-board button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 3rem;
+    padding: 0.5rem;
+  }
+
+  #game-over h2 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+
+  #game-over p {
+    font-size: 1.2rem;
+  }
+
+  #game-over button {
+    font-size: 1.2rem;
+  }
+
+  #pre-game button {
+    font-size: 2.5rem;
+  }
+
+  #game-hints h2 {
+    font-size: 1.5rem;
+  }
+
+  #log li {
+    font-size: 0.9rem;
+    margin: 0.5rem;
+  }
+}
+
+@media (hover: hover) {
+  #players button:hover {
+    color: #f8ca31;
+  }
+
+  #reset-names:hover,
+  #reset-game:hover {
+    background: #fcd256;
+    border: 2px solid #e7bc3a;
+    color: #282617;
+    transform: scale(1.05);
+  }
+
+  #game-over button:hover {
+    background: #fcd256;
+    color: #3f3b00;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
+  }
+}
+
+
+@media (hover: none) {
+
+  #players button:hover {
+    color: #c3ba78;
+  }
+
+  #players button:active {
+    color: #f8ca31;
+    transform: scale(0.95);
+  }
+
+  #game-board button:active {
+    transform: scale(0.95);
+    background: #8a866e;
+  }
+
+  #game-over button:active {
+    background: #fcd256;
+    color: #3f3b00;
+    transform: scale(0.95);
+  }
+
+  #reset-names:active,
+  #reset-game:active {
+    background: #c3ba78;
+    color: #282617;
+    transform: scale(0.95);
+  }
+
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
 }

@@ -89,6 +89,15 @@ function App() {
     setGameTurns([]);
   }
 
+  function resetNames() {
+    localStorage.removeItem("X");
+    localStorage.removeItem("O");
+    setUserNames({
+      X: "Player 1",
+      O: "Player 2"
+    });
+  }
+
   return (
     <main>
       <div id = 'game-container'>
@@ -98,6 +107,10 @@ function App() {
         </ol>
         {(winner || isDraw) && <Winner winner = {winner} onReset = {resetGame}/>}
         <GameBoard togglePlayer={togglePlayer} board = {gameBoard} />
+        <div className="reset-buttons">
+          <button id="reset-names" onClick={resetNames}>Reset Names</button>
+          <button id="reset-game" onClick={resetGame}>Reset Game</button>
+        </div>
       </div>
       <Log turns = {gameTurns}/>
     </main>
